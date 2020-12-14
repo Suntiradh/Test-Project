@@ -2,6 +2,30 @@
   text-align: center;
 }
 
+.Form {
+  border-radius: 5px;
+  /*box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.5);
+  background-color: #f8f8f8;*/
+  margin: 20px;
+  padding: 20px;
+}
+
+.Button {
+  font-size: 20px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.Divider {
+  margin-top: 10px;
+  background-color: #d0d0d0;
+}
+
+.Title {
+  margin-top: 25px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +59,101 @@
   to {
     transform: rotate(360deg);
   }
+}
+/*** LOGIN FORM ****/
+.login-form input, .register-form input{
+  border-radius: 2px;
+  padding: 16px !important;
+}
+.login-form .Button, .register-form .Button {
+  border-radius: 20px !important;
+  border-color:#242847 !important;
+  font-size: 14px;
+  font-weight: bold;
+  height: 40px;
+  padding: 0 24px;
+}
+.login-form .text-normal , .register-form .text-normal{
+  font-size: 16px;
+}
+.button-blue {
+  background-color: #242847 !important;
+}
+.button-white {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+/*** LOGO***/
+#header {
+  background-color: #242847;
+  color: #ffffff !important;
+}
+#footer {
+  background-color: #242847;
+  color: #ffffff !important;
+}
+.logo img {
+  height: 105px;
+}
+
+
+/** MAIN MENU ***/
+.main-menu {
+  font-size: 18px;
+  font-weight: 500;
+
+}
+.main-menu a{
+  color: #ffffff;
+  padding: 0 15px;
+  line-height: 5.5;
+}
+.main-menu a:hover, .main-menu a:focus{
+  color: #E4C272;
+}
+
+/** RIGHT TOP**/
+.right-top a , .right-top a .ant-typography{
+  color: #ffffff;
+}
+.right-top .in-right .cart, .right-top .in-right .member-login  { 
+  width: 47%;
+}
+.right-top .in-right .cart {
+  float: left;
+  text-align: right;
+  margin-right: 15px;
+}
+.right-top .in-right .member-login {
+  float: right;
+  text-align: left;
+}
+.right-top .fa-user-circle {
+  margin-left: 28px;
+}
+.copyright {
+  background-color:#1A1D32 !important;
+}
+
+/* CSS RESPONSIVE ***/
+@media (max-width: 990px) {
+  .right-top .in-right .cart {
+    margin-right: 0;
+  }
+  .right-top .in-right .cart, .right-top .in-right .member-login  { 
+    width: 48%;
+  }
+}
+
+/* Checkout */
+.checkout-steps > div {
+  border-top: 0.3rem #c0c0c0 solid;
+  color: #c0c0c0;
+  flex: 1;
+  padding: 1rem;
+  font-weight: bold;
+}
+.checkout-steps > div.active {
+  border-top-color: #f08000;
+  color: #f08000;
 }
