@@ -17,9 +17,6 @@ module.exports = (sequelize, DataTypes) => {
         },
         category: {
             type: DataTypes.STRING(255)
-        },
-        quantity: {
-            type: DataTypes.INTEGER
         }
     },{
         tableName: 'products',

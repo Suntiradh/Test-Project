@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
         });
         
         res.status(201).send({
-            id: createdUser.id,
+            user_id: createdUser.user_id,
             name: createdUser.name,
             username: createdUser.username,
             email: createdUser.email,
@@ -57,9 +57,39 @@ const signinUser = async (req, res) => {
     res.status(401).send({ message: 'Invalid email or password' });
 }
 
+ const getUserProfile = async (req, res) => {
+    const user = await db.User.findByPk(req.params.id);
+    if (user) {
+      res.send(user);
+    } else {
+      res.status(404).send({ message: 'User Not Found' });
+    }
+  };
+
+
+  const updateProfile = async (req, res) => {
+    const user = await db.User.findByPk(req.body.userId);
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.username = req.body.username || user.username;
+      if (req.body.password) {
+        user.password = bcryptjs.hashSync(req.body.password, 8);
+      }
+      const updatedUser = await user.save();
+      res.send({
+        id: updatedUser.id,
+        name: updatedUser.name,
+        username: updatedUser.username,
+        isAdmin: updatedUser.isAdmin,
+        token: generateToken(updatedUser),
+      });
+    }
+  };
 
 module.exports = {
     registerUser,
     getUserList,
-    signinUser
+    signinUser,
+    getUserProfile,
+    updateProfile
 }

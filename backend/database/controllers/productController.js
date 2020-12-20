@@ -23,17 +23,46 @@ const addProductList = async (req, res) => {
         description: req.body.description,
         img: req.body.img,
         category: req.body.category,
-        quantity: req.body.quantity,
-        countInStock: req.params.countInStock,
-        user_id: req.user.id
+        countInStock: req.body.countInStock,
+        user_id: req.body.user.id
     });
     res.status(201).send(newProduct);
 };
 
+const deleteProductList = async (req, res) => {
+    const targetId = Number(req.params.id);
+    const targetProduct = await db.Product.findOne({ where: { id: targetId } });
+    if (targetProduct) {
+        await targetProduct.destroy();
+        res.status(204).send();
+    } else (
+        res.status(404).send({ message: "Product list not found." })
+    )
+};
 
+const updateProductList = async (req, res) => {
+    const targetId = Number(req.params.id);
+    const targetProduct = await db.Product.findOne({ where: { id: targetId } });
+    if (targetProduct) {
+        await targetProduct.update({
+            title: req.body.title,
+            price: req.body.price,
+            description: req.body.description,
+            img: req.body.img,
+            category: req.body.category,
+            countInStock: req.body.countInStock,
+            user_id: req.body.user.id
+        });
+        res.status(200).send({ message: "updating is success" });
+    } else {
+        res.status(404).send({ message: "Product list not found" });
+    }
+};
 
 module.exports = {
     getProductList,
     addProductList,
-    getProductById
+    getProductById,
+    deleteProductList,
+    updateProductList
 };
