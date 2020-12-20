@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { register } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import Navbar from '../components/Navbar';
+import { Col, Row } from 'antd';
+import Footer from '../components/Footer';
 
 export default function RegisterScreen(props) {
   const [name, setName] = useState('');
@@ -34,66 +37,70 @@ export default function RegisterScreen(props) {
   }, [props.history, redirect, userInfo]);
   return (
     <div>
-      <form className="form" onSubmit={submitHandler}>
-        <div>
-          <h1>Create Account</h1>
-        </div>
-        {loading && <LoadingBox></LoadingBox>}
-        {error && <MessageBox variant="danger">{error}</MessageBox>}
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Enter name"
-            required
-            onChange={(e) => setName(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter email"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter password"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Enter confirm password"
-            required
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label />
-          <button className="primary" type="submit">
-            Register
+      <Navbar />
+      <Row justify="center">
+        <Col xs={24} sm={24} md={15} lg={8} xl={8}>
+          <form className="form register-form" onSubmit={submitHandler}>
+            <div>
+              <h1>Create your account</h1><br />
+            </div>
+            {loading && <LoadingBox></LoadingBox>}
+            {error && <MessageBox variant="danger">{error}</MessageBox>}
+            <div>
+              <input
+                type="text"
+                id="name"
+                placeholder="First name"
+                required
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <input
+                type="email"
+                id="email"
+                placeholder="Email address"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <input
+                type="password"
+                id="password"
+                placeholder="Create a password"
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <input
+                type="password"
+                id="confirmPassword"
+                placeholder="Enter confirm password"
+                required
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              <label />
+              <button className="primary Button button-blue" type="submit">
+                Register
           </button>
-        </div>
-        <div>
-          <label />
-          <div>
-            Already have an account?{' '}
-            <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link>
-          </div>
-        </div>
-      </form>
+            </div>
+            <div>
+              <label />
+              <div>
+                Already have an account?
+                <br /><br />
+                <Link to={`/signin?redirect=${redirect}`}><buton className="Button button-white">Sign-In</buton></Link>
+              </div>
+            </div>
+          </form>
+        </Col>
+      </Row>
+
+      <Footer />
     </div>
   );
 }

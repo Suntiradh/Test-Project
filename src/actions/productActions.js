@@ -8,13 +8,14 @@ import {
   PRODUCT_LIST_SUCCESS,
 } from '../constants/productConstants';
 
-export const listProducts = () => async (dispatch) => {
+export const listProducts = (category) => async (dispatch) => {
   dispatch({
     type: PRODUCT_LIST_REQUEST,
   });
   try {
     const { data } = await Axios.get('/api/products');
-    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+    const filteredData = data.filter(e => e.category === category);
+    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: category === "All" ? data : filteredData });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
   }
